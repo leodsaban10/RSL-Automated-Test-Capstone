@@ -1,0 +1,10 @@
+{
+  "name": "RSL-Automated-Test-Capstone",
+  "type": "module",
+  "devDependencies": {
+    "@wdio/cli": "^9.12.5",
+    "@wdio/local-runner": "^9.12.5",
+    "@wdio/mocha-framework": "^9.12.5",
+    "@wdio/spec-reporter": "^9.12.3"
+  }
+}
