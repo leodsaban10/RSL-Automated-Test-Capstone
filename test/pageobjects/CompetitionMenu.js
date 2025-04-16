@@ -2,13 +2,16 @@ import { expect } from '@wdio/globals'
 
 
 class AllCompetitionsDropdownMenu { 
-    get inputUsername () {
-        return $('#username');
+    get AllcompetitionBtn () {
+        return $('//*[@title="Competitions"]');
     }
 
     async RSLSchedulePage () {
         await browser.url('https://www.rsl.com/schedule/');
         await expect(browser).toHaveTitle('Schedule | Real Salt Lake');
+    }
+    async ClickAllCompetitionsBtn () {
+        await this.AllcompetitionBtn.click();;
     }
 }
 
