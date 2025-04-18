@@ -1,27 +1,23 @@
-class LoginPage extends Page {
 
-    get inputUsername () {
-        return $('#username');
+
+class ThreedotsMenu {
+
+    get ThreeDotsBtn () {
+        return $('li [data-test-id="toggle-overflow--lg"]');
+    }
+    get ThreeDotsOpened () {
+        return $('//*[@data-test-id="overflow-list"]');
     }
 
-    get inputPassword () {
-        return $('#password');
+    async RSLpage () {
+        return browser.url('https://www.rsl.com/schedule/');
     }
 
-    get btnSubmit () {
-        return $('button[type="submit"]');
+    async ThreeDotsMenuOpen () {
+        await this.ThreeDotsBtn.click();
+        // await expect(this.ThreeDotsOpened).toExist();
     }
 
-
-    async login (username, password) {
-        await this.inputUsername.setValue(username);
-        await this.inputPassword.setValue(password);
-        await this.btnSubmit.click();
-    }
-
-    async RSLHomepage () {
-        return browser.url('https://www.rsl.com/');
-    }
 }
 
-export default new LoginPage();
+export default new ThreedotsMenu();
