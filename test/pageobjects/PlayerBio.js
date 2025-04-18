@@ -24,7 +24,7 @@ class Player {
         await this.RafaelCardName.click();
         await expect(browser).toHaveTitle('Rafael Cabral | Real Salt Lake');
     }
-
+//I need to do the Audio Controls (play) button for Rafael Cabral. 
 }
 
 export default new Player();
