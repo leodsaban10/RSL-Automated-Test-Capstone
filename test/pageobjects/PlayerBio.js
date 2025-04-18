@@ -18,15 +18,9 @@ class Player {
         return browser.url('https://www.rsl.com/club/roster');
     }
     
-    async RafaelCardExists () {
+    async Rafael () {
         await expect (this.RafaelCard).toExist();
-    }
-
-    async GetRafaelHeaderText () {
         await expect(this.RafaelCardHeader).toHaveText('#1 - Rafael Cabral');
-    }
-
-    async LearnMoreAboutRafaelBtn () {
         await this.RafaelCardName.click();
         await expect(browser).toHaveTitle('Rafael Cabral | Real Salt Lake');
     }
