@@ -1,16 +1,15 @@
 import { browser, expect } from '@wdio/globals'
+import { Key } from 'webdriverio'
 
 
-class AllCompetitionsDropdownMenu { 
+class DropdownMenu { 
     get AllcompetitionBtn () {
         return $('//*[@class="mls-o-buttons__dropdown-button mls-o-buttons__dropdown-button--right "]');
     }
-    get Competitions () {
-        return $$('//*[@class="mls-o-buttons__dropdown-item"]');
+    get LastTournament () {
+        return $('//option[text()="CONCACAF Nations League"]');
     }
-    get AllCompetitionList () {
-        return $('//*[@value="all"]');
-    }
+
 
     async RSLSchedulePage () {
         await browser.url('https://www.rsl.com/schedule/');
@@ -18,15 +17,19 @@ class AllCompetitionsDropdownMenu {
     }
     async ClickAllCompetitionsBtn () {
         await this.AllcompetitionBtn.click();
-        await expect(this.Competitions).toBeElementsArrayOfSize({ gte: 16 });
-    }
-    //create the hover all competitions function
-    async HoverAllCompetitions () {
-        await this.AllcompetitionBtn.moveTo();
-        await expect(this.Competitions).toBeElementsArrayOfSize({ gte: 16 });
-        await browser.pause(7000);
-        await this.AllcompetitionBtn.click();
+        for (let i = 0; i < 16; i++) {
+            await browser.performActions([{
+                type: 'key',
+                id: 'keyboard',
+                actions: [
+                  { type: 'keyDown', value: '\uE015' },
+                  { type: 'keyUp', value: '\uE015' }
+                ]
+              }]);
+            await browser.pause(500); // Pause for 1 second between each action
+            await expect(this.LastTournament).toHaveText('CONCACAF Nations League');
+        }
     }
 }
 
-export default new AllCompetitionsDropdownMenu();
+export default new DropdownMenu();
