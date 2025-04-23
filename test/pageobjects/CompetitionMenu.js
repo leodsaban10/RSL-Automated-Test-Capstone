@@ -1,6 +1,5 @@
 import { browser, expect } from '@wdio/globals'
-import { Key } from 'webdriverio'
-
+// Done
 
 class DropdownMenu { 
     get AllcompetitionBtn () {
