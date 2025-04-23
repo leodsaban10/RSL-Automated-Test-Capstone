@@ -6,3 +6,4 @@ describe('All Competition Dropdown Menu', () => {
         await DropdownMenu.ClickAllCompetitionsBtn()
     })
 })
+

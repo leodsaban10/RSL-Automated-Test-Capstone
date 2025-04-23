@@ -1,13 +1,9 @@
-import Calendar from "../pageobjects/Calendar"
+import CalendarUse from "../pageobjects/Calendar"
 
-describe('My Login application', () => {
-    it('should login with valid credentials', async () => {
-        await LoginPage.open()
-
-        await LoginPage.login('tomsmith', 'SuperSecretPassword!')
-        await expect(SecurePage.flashAlert).toBeExisting()
-        await expect(SecurePage.flashAlert).toHaveText(
-            expect.stringContaining('You logged into a secure area!'))
+describe('Should Open the Calendar', () => {
+    it('should  open the calendar and view the year 2025', async () => {
+        await CalendarUse.RSLSchedulePage()
+        await CalendarUse.Year()
     })
 })
 

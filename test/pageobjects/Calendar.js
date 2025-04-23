@@ -1,27 +1,26 @@
-class LoginPage extends Page {
+import { browser, expect } from '@wdio/globals'
 
-    get inputUsername () {
-        return $('#username');
+
+class CalendarUse {
+
+    get CalendarYear () {
+        return $('//*[@aria-label="Date selector"]');
+    }
+    
+    get ConfirmCalendarYearOpen () {
+        return $('//button[text()="Today"]');
     }
 
-    get inputPassword () {
-        return $('#password');
+    async Year () {
+        await this.CalendarYear.click();
+        await expect (this.ConfirmCalendarYearOpen).toHaveText('Today');
     }
 
-    get btnSubmit () {
-        return $('button[type="submit"]');
-    }
-
-
-    async login (username, password) {
-        await this.inputUsername.setValue(username);
-        await this.inputPassword.setValue(password);
-        await this.btnSubmit.click();
-    }
-
-    async RSLHomepage () {
-        return browser.url('https://www.rsl.com/');
+    async RSLSchedulePage () {
+        await browser.url('https://www.rsl.com/schedule/');
+        await expect(browser).toHaveTitle('Schedule | Real Salt Lake');
     }
 }
 
-export default new LoginPage();
+export default new CalendarUse();
+ 
