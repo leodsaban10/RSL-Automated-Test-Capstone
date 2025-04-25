@@ -13,6 +13,12 @@ class CalendarUse {
     get MonthYearHeader () {
         return $('//*[@class="mls-o-calendar__title"]');
     }
+    get PreviousMonthYearArrowBtn () {
+        return $('//button[@class="mls-o-calendar__prev-month"]');
+    }
+    get NextMonthYearArrowBtn () {
+        return $('//button[@class="mls-o-calendar__next-month"]');
+    }
 
     async RSLSchedulePage () {
         await browser.url('https://www.rsl.com/schedule/');
@@ -25,7 +31,19 @@ class CalendarUse {
         const monthHeaderText = await this.MonthYearHeader.getText();
         await expect(monthHeaderText).toContain('April 2025');
     }
-    
+
+    async PreviousMonthYear () {
+        await this.PreviousMonthYearArrowBtn.click();
+        const monthHeaderText = await this.MonthYearHeader.getText();
+        await expect(monthHeaderText).toContain('March 2025');
+    }
+
+    async NextMonthYear () {
+        await this.NextMonthYearArrowBtn.click();
+        const monthHeaderText = await this.MonthYearHeader.getText();
+        await expect(monthHeaderText).toContain('April 2025');
+    }
+
 }
 
 export default new CalendarUse();

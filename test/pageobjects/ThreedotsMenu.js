@@ -3,7 +3,7 @@
 class ThreedotsMenu {
 
     get ThreeDotsBtn () {
-        return $('li [data-test-id="toggle-overflow--lg"]');
+        return $('[data-test-id="toggle-overflow--md"]');
     }
     get ThreeDotsOpened () {
         return $('//*[@data-test-id="overflow-list"]');
@@ -15,7 +15,8 @@ class ThreedotsMenu {
 
     async ThreeDotsMenuOpen () {
         await this.ThreeDotsBtn.click();
-        // await expect(this.ThreeDotsOpened).toExist();
+        await expect(this.ThreeDotsOpened).toExist();
+        await browser.pause(2000);
     }
 
 }
