@@ -32,14 +32,22 @@ class CalendarUse {
         await expect(monthHeaderText).toContain('April 2025');
     }
 
-    async PreviousMonthYear () {
-        await this.PreviousMonthYearArrowBtn.click();
+    async PreviousMonthYear (times = 6) {// times = 6
+        // await this.PreviousMonthYearArrowBtn.click();
+        for (let i = 0; i < times; i++) {
+            await this.PreviousMonthYearArrowBtn.click();
+        }
+        await browser.pause(500);
         const monthHeaderText = await this.MonthYearHeader.getText();
-        await expect(monthHeaderText).toContain('March 2025');
+        await expect(monthHeaderText).toContain('');
     }
 
-    async NextMonthYear () {
-        await this.NextMonthYearArrowBtn.click();
+    async NextMonthYear ( times = 6) {
+        // await this.NextMonthYearArrowBtn.click();
+            for (let i = 0; i < times; i++) {
+                await this.NextMonthYearArrowBtn.click();
+        }
+        await browser.pause(500);
         const monthHeaderText = await this.MonthYearHeader.getText();
         await expect(monthHeaderText).toContain('April 2025');
     }

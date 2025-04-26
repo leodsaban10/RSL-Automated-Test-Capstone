@@ -16,7 +16,7 @@ class DropdownMenu {
     }
     async ClickAllCompetitionsBtn () {
         await this.AllcompetitionBtn.click();
-        for (let i = 0; i < 16; i++) {
+        for (let i = 0; i < 16; i++) { // 16 is the number of tournaments in the dropdown
             await browser.performActions([{
                 type: 'key',
                 id: 'keyboard',
