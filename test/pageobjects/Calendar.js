@@ -6,7 +6,18 @@ class CalendarUse {
     get CalendarYear () {
         return $('//*[@aria-label="Date selector"]');
     }
-    
+    get YearHeaderText () {
+        return $('//button[text()="2021"]');
+    }
+    get YearHeaderText1 () {
+        return $('//button[text()="2025"]');
+    }
+    get PreviousYearArrowBtn () {
+        return $('//button[@aria-label="Previous results"]');
+    }
+    get NextYearArrowBtn () {
+        return $('//button[@aria-label="Next results"]');
+    }
     get TodayText () {
         return $('//button[text()="Today"]');
     }
@@ -20,6 +31,7 @@ class CalendarUse {
         return $('//button[@class="mls-o-calendar__next-month"]');
     }
 
+
     async RSLSchedulePage () {
         await browser.url('https://www.rsl.com/schedule/');
         await expect(browser).toHaveTitle('Schedule | Real Salt Lake');
@@ -32,7 +44,27 @@ class CalendarUse {
         await expect(monthHeaderText).toContain('April 2025');
     }
 
-    async PreviousMonth (times = 6) {// times = 6
+    async PreviousYearArrow (times = 4) {// times = 6
+        // await this.PreviousYearArrowBtn.click();
+        for (let i = 0; i < times; i++) {
+            await this.PreviousYearArrowBtn.click();
+        }
+        await browser.pause(500);
+        const yearText = await this.YearHeaderText.getText();
+        await expect(yearText).toContain('2021');
+    }
+    
+    async NextYearArrow (times = 4) {
+        // await this.NextYearArrowBtn.click();
+        for (let i = 0; i < times; i++) {
+            await this.NextYearArrowBtn.click();
+        }
+        await browser.pause(500);
+        const yearText = await this.YearHeaderText1.getText();
+        await expect(yearText).toContain('2025');
+    }
+
+    async PreviousMonthArrow (times = 6) {// times = 6
         // await this.PreviousMonthYearArrowBtn.click();
         for (let i = 0; i < times; i++) {
             await this.PreviousMonthArrowBtn.click();
@@ -42,7 +74,7 @@ class CalendarUse {
         await expect(monthHeaderText).toContain('');
     }
 
-    async NextMonth ( times = 6) {
+    async NextMonthArrow ( times = 6) {
         // await this.NextMonthYearArrowBtn.click();
             for (let i = 0; i < times; i++) {
                 await this.NextMonthArrowBtn.click();
@@ -52,11 +84,23 @@ class CalendarUse {
         await expect(monthHeaderText).toContain('April 2025');
     }
 
-    async DisabledArrowBtn (times = 10) {
+    async DisabledArrowMonthBtn (times = 10) {
         for (let i = 0; i < times; i++) {
             await this.NextMonthArrowBtn.click();
     }
         const isEnabled = await this.NextMonthArrowBtn.getAttribute('disabled');
+        if (isEnabled === 'true') {
+            console.log('Next month arrow button is Disabled');
+        } else {
+            console.log('Next month arrow button is Enabled');
+        }
+    }
+
+    async DisabledArrowYearBtn (times = 2) {
+        for (let i = 0; i < times; i++) {
+            await this.NextYearArrowBtn.click();
+    }
+        const isEnabled = await this.NextYearArrowBtn.getAttribute('disabled');
         if (isEnabled === 'true') {
             console.log('Next month arrow button is Disabled');
         } else {
