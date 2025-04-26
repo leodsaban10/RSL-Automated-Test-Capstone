@@ -52,6 +52,18 @@ class CalendarUse {
         await expect(monthHeaderText).toContain('April 2025');
     }
 
+    async DisabledArrowBtn (times = 10) {
+        for (let i = 0; i < times; i++) {
+            await this.NextMonthYearArrowBtn.click();
+    }
+        const isEnabled = await this.NextMonthYearArrowBtn.getAttribute('disabled');
+        if (isEnabled === 'true') {
+            console.log('Next month arrow button is Disabled');
+        } else {
+            console.log('Next month arrow button is Enabled');
+        }
+    }
+
 }
 
 export default new CalendarUse();

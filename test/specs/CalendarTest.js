@@ -6,6 +6,7 @@ describe('Should Open the Calendar', () => {
         await CalendarUse.CalendarOpen()
         await CalendarUse.PreviousMonthYear()
         await CalendarUse.NextMonthYear()
+        await CalendarUse.DisabledArrowBtn()
     })
 })
 
