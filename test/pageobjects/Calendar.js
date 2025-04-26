@@ -21,6 +21,12 @@ class CalendarUse {
     get TodayText () {
         return $('//button[text()="Today"]');
     }
+    get TodayBtn () {
+        return $('//button[@class="mls-o-calendar__today"]');
+    }
+    get DayEleven () {
+        return $('//button[@class="mls-o-calendar__day  "][text()=11]');
+    }
     get MonthYearHeader () {
         return $('//*[@class="mls-o-calendar__title"]');
     }
@@ -39,7 +45,7 @@ class CalendarUse {
 
     async CalendarOpen () {
         await this.CalendarYear.click();
-        // await expect (this.TodayText).toHaveText('Today');
+        await expect (this.TodayText).toHaveText('Today');
         const monthHeaderText = await this.MonthYearHeader.getText();
         await expect(monthHeaderText).toContain('April 2025');
     }
@@ -106,6 +112,17 @@ class CalendarUse {
         } else {
             console.log('Next month arrow button is Enabled');
         }
+    }
+
+    async TodayButton () {
+
+        await this.CalendarOpen();
+        await this.PreviousMonthArrow();
+        await this.DayEleven.click();
+        await expect(browser).toHaveUrl('https://www.rsl.com/schedule/#competition=all&date=2024-10-11');
+        await this.CalendarYear.click();
+        await this.TodayBtn.click();  
+        await expect(browser).toHaveUrl('https://www.rsl.com/schedule/#competition=all&date=2025-04-26');
     }
 
 }
