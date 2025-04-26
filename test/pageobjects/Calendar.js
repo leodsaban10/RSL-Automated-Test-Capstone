@@ -13,10 +13,10 @@ class CalendarUse {
     get MonthYearHeader () {
         return $('//*[@class="mls-o-calendar__title"]');
     }
-    get PreviousMonthYearArrowBtn () {
+    get PreviousMonthArrowBtn () {
         return $('//button[@class="mls-o-calendar__prev-month"]');
     }
-    get NextMonthYearArrowBtn () {
+    get NextMonthArrowBtn () {
         return $('//button[@class="mls-o-calendar__next-month"]');
     }
 
@@ -32,20 +32,20 @@ class CalendarUse {
         await expect(monthHeaderText).toContain('April 2025');
     }
 
-    async PreviousMonthYear (times = 6) {// times = 6
+    async PreviousMonth (times = 6) {// times = 6
         // await this.PreviousMonthYearArrowBtn.click();
         for (let i = 0; i < times; i++) {
-            await this.PreviousMonthYearArrowBtn.click();
+            await this.PreviousMonthArrowBtn.click();
         }
         await browser.pause(500);
         const monthHeaderText = await this.MonthYearHeader.getText();
         await expect(monthHeaderText).toContain('');
     }
 
-    async NextMonthYear ( times = 6) {
+    async NextMonth ( times = 6) {
         // await this.NextMonthYearArrowBtn.click();
             for (let i = 0; i < times; i++) {
-                await this.NextMonthYearArrowBtn.click();
+                await this.NextMonthArrowBtn.click();
         }
         await browser.pause(500);
         const monthHeaderText = await this.MonthYearHeader.getText();
@@ -54,9 +54,9 @@ class CalendarUse {
 
     async DisabledArrowBtn (times = 10) {
         for (let i = 0; i < times; i++) {
-            await this.NextMonthYearArrowBtn.click();
+            await this.NextMonthArrowBtn.click();
     }
-        const isEnabled = await this.NextMonthYearArrowBtn.getAttribute('disabled');
+        const isEnabled = await this.NextMonthArrowBtn.getAttribute('disabled');
         if (isEnabled === 'true') {
             console.log('Next month arrow button is Disabled');
         } else {

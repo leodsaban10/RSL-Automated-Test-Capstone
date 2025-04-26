@@ -1,11 +1,11 @@
 import CalendarUse from "../pageobjects/Calendar"
 
 describe('Should Open the Calendar', () => {
-    it('should  open the calendar and view the Month and Year 2025', async () => {
+    it('should  open the calendar and test the Month Arrows', async () => {
         await CalendarUse.RSLSchedulePage()
         await CalendarUse.CalendarOpen()
-        await CalendarUse.PreviousMonthYear()
-        await CalendarUse.NextMonthYear()
+        await CalendarUse.PreviousMonth()
+        await CalendarUse.NextMonth()
         await CalendarUse.DisabledArrowBtn()
     })
 })
