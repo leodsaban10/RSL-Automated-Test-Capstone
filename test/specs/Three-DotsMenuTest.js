@@ -4,5 +4,6 @@ describe('Three Dots Menu is Clickable', () => {
     it('should open the Three Dot Menu', async () => {
         await ThreedotsMenu.RSLpage()
         await ThreedotsMenu.ThreeDotsMenuOpen()
+        await ThreedotsMenu.HoverOverListItems()
     })
 })

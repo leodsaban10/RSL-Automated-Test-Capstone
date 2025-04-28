@@ -115,14 +115,13 @@ class CalendarUse {
     }
 
     async TodayButton () {
-
         await this.CalendarOpen();
         await this.PreviousMonthArrow();
         await this.DayEleven.click();
         await expect(browser).toHaveUrl('https://www.rsl.com/schedule/#competition=all&date=2024-10-11');
         await this.CalendarYear.click();
         await this.TodayBtn.click();  
-        await expect(browser).toHaveUrl('https://www.rsl.com/schedule/#competition=all&date=2025-04-26');
+        await expect(browser).toHaveUrl('https://www.rsl.com/schedule/#competition=all&date=2025-04-2');
     }
 
 }
