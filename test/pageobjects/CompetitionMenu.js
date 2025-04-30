@@ -1,5 +1,4 @@
 import { browser, expect } from '@wdio/globals'
-// Done
 
 class DropdownMenu { 
     get AllcompetitionBtn () {
@@ -25,7 +24,7 @@ class DropdownMenu {
                   { type: 'keyUp', value: '\uE015' }
                 ]
               }]);
-            await browser.pause(500); // Pause for 1 second between each action
+            await browser.pause(500); // Pause for 1 second between each action to show hover effect
             await expect(this.LastTournament).toHaveText('CONCACAF Nations League');
         }
     }

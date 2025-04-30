@@ -50,7 +50,7 @@ class CalendarUse {
         await expect(monthHeaderText).toContain('April 2025');
     }
 
-    async PreviousYearArrow (times = 4) {// times = 6
+    async PreviousYearArrow (times = 4) {
         // await this.PreviousYearArrowBtn.click();
         for (let i = 0; i < times; i++) {
             await this.PreviousYearArrowBtn.click();
@@ -70,7 +70,7 @@ class CalendarUse {
         await expect(yearText).toContain('2025');
     }
 
-    async PreviousMonthArrow (times = 6) {// times = 6
+    async PreviousMonthArrow (times = 6) {
         // await this.PreviousMonthYearArrowBtn.click();
         for (let i = 0; i < times; i++) {
             await this.PreviousMonthArrowBtn.click();
@@ -121,7 +121,7 @@ class CalendarUse {
         await expect(browser).toHaveUrl('https://www.rsl.com/schedule/#competition=all&date=2024-10-11');
         await this.CalendarYear.click();
         await this.TodayBtn.click();  
-        await expect(browser).toHaveUrl('https://www.rsl.com/schedule/#competition=all&date=2025-04-2');
+        await expect(browser).toHaveUrl('https://www.rsl.com/schedule/#competition=all&date=2025-04-30');//change date as today's date
     }
 
 }
