@@ -51,27 +51,22 @@ class CalendarUse {
     }
 
     async PreviousYearArrow (times = 4) {
-        // await this.PreviousYearArrowBtn.click();
         for (let i = 0; i < times; i++) {
             await this.PreviousYearArrowBtn.click();
         }
-        await browser.pause(500);
         const yearText = await this.YearHeaderText.getText();
         await expect(yearText).toContain('2021');
     }
     
     async NextYearArrow (times = 4) {
-        // await this.NextYearArrowBtn.click();
         for (let i = 0; i < times; i++) {
             await this.NextYearArrowBtn.click();
         }
-        await browser.pause(500);
         const yearText = await this.YearHeaderText1.getText();
         await expect(yearText).toContain('2025');
     }
 
     async PreviousMonthArrow (times = 6) {
-        // await this.PreviousMonthYearArrowBtn.click();
         for (let i = 0; i < times; i++) {
             await this.PreviousMonthArrowBtn.click();
         }
@@ -81,7 +76,6 @@ class CalendarUse {
     }
 
     async NextMonthArrow ( times = 6) {
-        // await this.NextMonthYearArrowBtn.click();
             for (let i = 0; i < times; i++) {
                 await this.NextMonthArrowBtn.click();
         }

@@ -19,7 +19,6 @@ class ThreedotsMenu {
     async ThreeDotsMenuOpen () {
         await this.ThreeDotsBtn.click();
         await expect(this.ThreeDotsOpened).toExist();
-        await browser.pause(2000);
     }
 
     async HoverOverListItems () {
@@ -27,7 +26,6 @@ class ThreedotsMenu {
         await this.MenuContainer.moveTo();
             for (let i = 0; i < 6; i++) { // 6 items in the menu
                 await this.MenuContainer.$('li:nth-child(' + (i + 1) + ')').moveTo();
-                await browser.pause(1000);
             }
             await this.MenuContainer.$('li:last-child').click();
             await expect (browser).toHaveTitle('Youth | Real Salt Lake')
