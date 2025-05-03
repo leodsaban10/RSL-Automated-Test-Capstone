@@ -2,7 +2,7 @@ import DropdownMenu from '../pageobjects/CompetitionMenu.js'
 
 describe('All Competition Dropdown Menu', () => {
     it('should open the Schedule Page and click on the All Competitions Dropdown Button', async () => {
-        await DropdownMenu.RSLSchedulePage()
+        await DropdownMenu.open()
         await DropdownMenu.ClickAllCompetitionsBtn()
     })
 })

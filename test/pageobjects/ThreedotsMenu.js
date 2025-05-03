@@ -1,6 +1,8 @@
 import { browser, expect } from '@wdio/globals'
+import RSLLink from './Url.js';
 
-class ThreedotsMenu {
+
+class ThreedotsMenu extends RSLLink { 
 
     get ThreeDotsBtn () {
         return $('[data-test-id="toggle-overflow--md"]');
@@ -12,9 +14,9 @@ class ThreedotsMenu {
          return $('aside[data-test-id="sidebar-overflow--md"] ul')
     }
 
-    async RSLpage () {
-        return browser.url('https://www.rsl.com/schedule/');
-    }
+    // async RSLpage () {
+    //     return browser.url('https://www.rsl.com/schedule/');
+    // }
 
     async ThreeDotsMenuOpen () {
         await this.ThreeDotsBtn.click();
@@ -29,6 +31,9 @@ class ThreedotsMenu {
             }
             await this.MenuContainer.$('li:last-child').click();
             await expect (browser).toHaveTitle('Youth | Real Salt Lake')
+    }
+    open() {
+        return super.open('schedule');
     }
 
 }

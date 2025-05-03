@@ -1,6 +1,8 @@
 import { browser, expect } from '@wdio/globals'
+import RSLLink from './Url.js';
 
-class DropdownMenu { 
+
+class DropdownMenu extends RSLLink { 
     get AllcompetitionBtn () {
         return $('//*[@class="mls-o-buttons__dropdown-button mls-o-buttons__dropdown-button--right "]');
     }
@@ -9,10 +11,10 @@ class DropdownMenu {
     }
 
 
-    async RSLSchedulePage () {
-        await browser.url('https://www.rsl.com/schedule/');
-        await expect(browser).toHaveTitle('Schedule | Real Salt Lake');
-    }
+    // async RSLSchedulePage () {
+    //     await browser.url('https://www.rsl.com/schedule/');
+    //     await expect(browser).toHaveTitle('Schedule | Real Salt Lake');
+    // }
     async ClickAllCompetitionsBtn () {
         await this.AllcompetitionBtn.click();
         for (let i = 0; i < 16; i++) { // 16 is the number of tournaments in the dropdown
@@ -26,6 +28,9 @@ class DropdownMenu {
               }]);
             await expect(this.LastTournament).toHaveText('CONCACAF Nations League');
         }
+    }
+    open() {
+        return super.open('schedule');
     }
 }
 

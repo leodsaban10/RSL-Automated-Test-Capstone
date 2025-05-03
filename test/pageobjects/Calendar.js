@@ -1,7 +1,8 @@
 import { browser, expect } from '@wdio/globals'
+import RSLLink from './Url.js';
 
 
-class CalendarUse {
+class CalendarUse extends RSLLink {
 
     get CalendarYear () {
         return $('//*[@aria-label="Date selector"]');
@@ -38,16 +39,16 @@ class CalendarUse {
     }
 
 
-    async RSLSchedulePage () {
-        await browser.url('https://www.rsl.com/schedule/');
-        await expect(browser).toHaveTitle('Schedule | Real Salt Lake');
-    }
+    // async RSLSchedulePage () {
+    //     await browser.url('https://www.rsl.com/schedule/');
+    //     await expect(browser).toHaveTitle('Schedule | Real Salt Lake');
+    // }
 
     async CalendarOpen () {
         await this.CalendarYear.click();
         await expect (this.TodayText).toHaveText('Today');
         const monthHeaderText = await this.MonthYearHeader.getText();
-        await expect(monthHeaderText).toContain('April 2025');
+        await expect(monthHeaderText).toContain('May 2025');
     }
 
     async PreviousYearArrow (times = 4) {
@@ -79,9 +80,8 @@ class CalendarUse {
             for (let i = 0; i < times; i++) {
                 await this.NextMonthArrowBtn.click();
         }
-        await browser.pause(500);
         const monthHeaderText = await this.MonthYearHeader.getText();
-        await expect(monthHeaderText).toContain('April 2025');
+        await expect(monthHeaderText).toContain('May 2025');
     }
 
     async DisabledArrowMonthBtn (times = 10) {
@@ -112,13 +112,18 @@ class CalendarUse {
         await this.CalendarOpen();
         await this.PreviousMonthArrow();
         await this.DayEleven.click();
-        await expect(browser).toHaveUrl('https://www.rsl.com/schedule/#competition=all&date=2024-10-11');
+        await expect(browser).toHaveUrl('https://www.rsl.com/schedule/#competition=all&date=2024-11-11');
         await this.CalendarYear.click();
         await this.TodayBtn.click();  
-        await expect(browser).toHaveUrl('https://www.rsl.com/schedule/#competition=all&date=2025-04-30');//change date as today's date
+        await expect(browser).toHaveUrl('https://www.rsl.com/schedule/#competition=all&date=2025-05-03');//change date as today's date
     }
 
+    
+    open() {
+        return super.open('schedule');
+    }
 }
+
 
 export default new CalendarUse();
  
