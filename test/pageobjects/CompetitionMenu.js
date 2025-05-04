@@ -55,11 +55,6 @@ class DropdownMenu extends RSLLink {
         return $('//option[text()="CONCACAF Nations League"]');
     }
 
-
-    // async RSLSchedulePage () {
-    //     await browser.url('https://www.rsl.com/schedule/');
-    //     await expect(browser).toHaveTitle('Schedule | Real Salt Lake');
-    // }
     async ClickAllCompetitionsBtn () {
         await this.AllcompetitionBtn.click();
         for (let i = 0; i < 16; i++) { // 16 is the number of tournaments in the dropdown

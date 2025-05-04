@@ -14,10 +14,6 @@ class ThreedotsMenu extends RSLLink {
          return $('aside[data-test-id="sidebar-overflow--md"] ul')
     }
 
-    // async RSLpage () {
-    //     return browser.url('https://www.rsl.com/schedule/');
-    // }
-
     async ThreeDotsMenuOpen () {
         await this.ThreeDotsBtn.click();
         await expect(this.ThreeDotsOpened).toExist();

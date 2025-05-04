@@ -8,10 +8,10 @@ class CalendarUse extends RSLLink {
         return $('//*[@aria-label="Date selector"]');
     }
     get YearHeaderText () {
-        return $('//button[text()="2021"]');
+        return $(`//button[text()="${year}"]`);
     }
     get YearHeaderText1 () {
-        return $('//button[text()="2025"]');
+        return $(`//button[text()="${year}"]`);
     }
     get PreviousYearArrowBtn () {
         return $('//button[@aria-label="Previous results"]');
@@ -37,12 +37,6 @@ class CalendarUse extends RSLLink {
     get NextMonthArrowBtn () {
         return $('//button[@class="mls-o-calendar__next-month"]');
     }
-
-
-    // async RSLSchedulePage () {
-    //     await browser.url('https://www.rsl.com/schedule/');
-    //     await expect(browser).toHaveTitle('Schedule | Real Salt Lake');
-    // }
 
     async CalendarOpen () {
         await this.CalendarYear.click();
@@ -71,7 +65,6 @@ class CalendarUse extends RSLLink {
         for (let i = 0; i < times; i++) {
             await this.PreviousMonthArrowBtn.click();
         }
-        await browser.pause(500);
         const monthHeaderText = await this.MonthYearHeader.getText();
         await expect(monthHeaderText).toContain('');
     }

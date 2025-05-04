@@ -16,10 +16,6 @@ class Player extends RSLLink {
         return $('//h2[contains(text(), "#1 - Rafael Cabral")]');
     }
 
-    // async RSLHomepage () {
-    //     return browser.url('https://www.rsl.com/club/roster');
-    // }
-    
     async Rafael () {
         await expect (this.RafaelCard).toExist();
         await expect(this.RafaelCardHeader).toHaveText('#1 - Rafael Cabral');
