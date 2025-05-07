@@ -1,5 +1,5 @@
 import { browser, expect } from '@wdio/globals'
-import RSLLink from './Url.js';
+import RSLLink from './Base.js';
 
 
 class CalendarUse extends RSLLink {
@@ -112,7 +112,7 @@ class CalendarUse extends RSLLink {
     }
 
     
-    open() {
+    Destination () {
         return super.open('schedule');
     }
 }

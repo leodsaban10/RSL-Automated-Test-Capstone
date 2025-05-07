@@ -1,5 +1,5 @@
 export default class RSLLink {
-    open(path = '') {
+    Destination (path = '') {
         return browser.url(`https://www.rsl.com/${path}`);
     }
 }

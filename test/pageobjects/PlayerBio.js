@@ -1,5 +1,5 @@
 import { expect } from '@wdio/globals'; 
-import RSLLink from './Url.js';
+import RSLLink from './Base.js';
 
 
 class Player extends RSLLink {
@@ -7,22 +7,21 @@ class Player extends RSLLink {
     get RafaelCard () {
         return $('//*[@id="rafael-cabral-roster"]');
     }
+
+    async Rafael() {
+
+        const text = await this.RafaelCard.getText();
+            await expect(text).toContain('#1 - Rafael Cabral');
+            await expect(text).toContain('Goalkeeper');
+            await expect(text).toContain('Learn More About Rafael!');
+
+            const learnMoreBtn = await this.RafaelCard.$('.//*[contains(text(), "Learn More About Rafael!")]');
+            await learnMoreBtn.click();
+            await expect(browser).toHaveTitle('Rafael Cabral | Real Salt Lake');
+}
     
-    get RafaelCardName () {
-        return $('//*[@aria-label="Learn More About Rafael! "]');
-    }
 
-    get RafaelCardHeader () {
-        return $('//h2[contains(text(), "#1 - Rafael Cabral")]');
-    }
-
-    async Rafael () {
-        await expect (this.RafaelCard).toExist();
-        await expect(this.RafaelCardHeader).toHaveText('#1 - Rafael Cabral');
-        await this.RafaelCardName.click();
-        await expect(browser).toHaveTitle('Rafael Cabral | Real Salt Lake');
-    }
-    open() {
+Destination() {
         return super.open('club/roster');
     }
 }
