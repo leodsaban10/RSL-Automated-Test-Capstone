@@ -8,10 +8,10 @@ class CalendarUse extends RSLLink {
         return $('//*[@aria-label="Date selector"]');
     }
     get YearHeaderText () {
-        return $(`//button[text()="${year}"]`);
+        return $(`//button[text()="2021"]`);
     }
     get YearHeaderText1 () {
-        return $(`//button[text()="${year}"]`);
+        return $(`//button[text()="2025"]`);
     }
     get PreviousYearArrowBtn () {
         return $('//button[@aria-label="Previous results"]');
@@ -108,12 +108,12 @@ class CalendarUse extends RSLLink {
         await expect(browser).toHaveUrl('https://www.rsl.com/schedule/#competition=all&date=2024-11-11');
         await this.CalendarYear.click();
         await this.TodayBtn.click();  
-        await expect(browser).toHaveUrl('https://www.rsl.com/schedule/#competition=all&date=2025-05-03');//change date as today's date
+        await expect(browser).toHaveUrl('https://www.rsl.com/schedule/#competition=all&date=2025-05-07');//change date as today's date
     }
 
     
-    Destination () {
-        return super.open('schedule');
+    goToCalendar () {
+        return this.destination('schedule');
     }
 }
 

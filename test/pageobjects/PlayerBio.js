@@ -21,8 +21,8 @@ class Player extends RSLLink {
 }
     
 
-Destination() {
-        return super.open('club/roster');
+    goToDeclareRoster () {
+        return this.destination('club/roster');
     }
 }
 
