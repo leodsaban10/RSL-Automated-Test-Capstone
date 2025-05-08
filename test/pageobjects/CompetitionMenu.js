@@ -17,7 +17,7 @@ class DropdownMenu extends RSLLink {
     async ClickAllCompetitionsBtn () {
         // await this.AllcompetitionBtn.waitForDisplayed({ timeout: 5000 });  
         // await this.AllcompetitionBtn.scrollIntoView();
-        await this.AllcompetitionBtn.click();
+        // await this.AllcompetitionBtn.click();
         // for (let i = 0; i < 16; i++) { // 16 is the number of tournaments in the dropdown
         // await browser.performActions([{
         //     type: 'key',
@@ -30,21 +30,19 @@ class DropdownMenu extends RSLLink {
         let competitionNames = ['All Competitions', 'Major League Soccer - Regular Season', 'Major League Soccer - Cup Playoffs', 'MLS NEXT Pro - Regular Season',
             'MLS NEXT Pro - Playoffs', 'MLS All-Star Game', 'Leagues Cup', 'Campeones Cup', 'CONCACAF Champions Cup', 'Club Friendly Matches',
              'U.S. Open Cup', 'Canadian Championship', 'Copa America', 'MLS NEXT Pro Invitational', 'FIFA Club World Cup', 'CONCACAF Nations League'];
-            
-        let competition = ['All Competitions', 'Major League Soccer - Regular Season', 'Major League Soccer - Cup Playoffs', 'MLS NEXT Pro - Regular Season',
-                'MLS NEXT Pro - Playoffs', 'MLS All-Star Game', 'Leagues Cup', 'Campeones Cup', 'CONCACAF Champions Cup', 'Club Friendly Matches',
-                 'U.S. Open Cup', 'Canadian Championship', 'Copa America', 'MLS NEXT Pro Invitational', 'FIFA Club World Cup', 'CONCACAF Nations League'];     
-        // await this.AllcompetitionBtn.scrollIntoView();
-        // await this.AllcompetitionBtn.waitForDisplayed({ timeout: 5000 });     
-        // await this.AllcompetitionBtn.click();
-            // for (let i = 0; i < competitionNames.length; i++) { 
-            //     await this.TournamentSelectors(competitionNames[i]).moveTo();
+  
+        await this.AllcompetitionBtn.scrollIntoView();
+        await this.AllcompetitionBtn.waitForDisplayed({ timeout: 5000 });     
+       
+            for (let i = 0; i < 16; i++) { 
+                await this.AllcompetitionBtn.click();
+                await this.TournamentSelectors(competitionNames[i]).moveTo();
             for (let i = 0; i < competitionNames.length; i++) {
-                await expect(this.TournamentSelectors(competitionNames[i])).toHaveText(competition[i]);
+                await expect(this.TournamentSelectors(competitionNames[i])).toHaveText(competitionNames[i]);
                 // await this.TournamentSelectors(competitionNames[i]).moveTo();
             }
 
-        // }
+        }
     }
 
     goToSchedule () {

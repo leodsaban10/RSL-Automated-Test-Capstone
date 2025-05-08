@@ -33,18 +33,24 @@ class ThreedotsMenu extends RSLLink {
             for (let i = 0; i < itemNames.length; i++) {
             await expect(this.MenuItems(itemNames[i])).toExist(itemNames[i]);
             }
-            await this.MenuContainer.$('li:nth-child(1)').middleClick();
-            await expect (browser).toHaveTitle('News | Real Salt Lake')
-            // await this.MenuContainer.$('li:nth-child(2)').click();
-            // await expect (browser).toHaveTitle('Video | Real Salt Lake')
-            // await this.MenuContainer.$('li:nth-child(3)').click();
-            // await expect (browser).toHaveTitle('Community | Real Salt Lake')
-            // await this.MenuContainer.$('li:nth-child(4)').click();
-            // await expect (browser).toHaveTitle('Real Monarchs')
-            // await this.MenuContainer.$('li:nth-child(5)').click();
-            // await expect (browser).toHaveTitle('Real Salt Lake')
-            // await this.MenuContainer.$('li:last-child').click();
-            // await expect (browser).toHaveTitle('Youth | Real Salt Lake')
+
+            let expectedTitles = ['News | Real Salt Lake', 'Video | Real Salt Lake', 'Community | Real Salt Lake', 'Real Monarchs', 'Real Salt Lake', 'Youth | Real Salt Lake'];
+            for (let i = 0; i <expectedTitles.length; i++) {
+                const listItem = await this.MenuContainer.$(`li:nth-child(${i + 1})`);
+                await listItem.click();
+                let handle = await browser.getWindowHandles();
+                if (handle.length > 1) {
+                    await browser.switchWindow(handle[1]);
+                    await expect(browser).toHaveTitle(expectedTitles[i]);
+                    await browser.closeWindow();
+                    await browser.switchWindow(handle[0]);
+            }   else {
+                await expect(browser).toHaveTitle(expectedTitles[i]);
+            }
+                await this.ThreeDotsBtn.click();
+               
+            }
+
     }
 
     goToThreeDotsMenu () {
